@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Gökçe!</title>
+<style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #b3e5fc; /* Light Blue background */
+           color: #333;
+           margin: 0;
+           padding: 0;
+           text-align: center;
+       }
+       header {
+           background-color: #b3e5fc; /* Light Blue */
+           color: #ffffff; /* White text */
+           padding: 20px 0;
+       }
+       nav {
+           margin: 20px 0;
+           background-color: #b3e5fc; /* Light Blue */
+           padding: 10px 0;
+       }
+       nav a {
+           margin: 0 15px;
+           text-decoration: none;
+           color: #ffffff; /* White */
+           font-weight: bold;
+       }
+       section {
+           padding: 20px;
+           margin: 20px auto;
+           width: 80%;
+           background-color: #ffffff; /* White for sections */
+           border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       }
+       footer {
+           background-color: #b3e5fc; /* Light Blue */
+           color: #ffffff; /* White text */
+           padding: 10px 0;
+           position: fixed;
+           width: 100%;
+           bottom: 0;
+           left: 0;
+       }
+       .gallery {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+       .gallery-row {
+           display: flex;
+           justify-content: center;
+           flex-wrap: wrap;
+       }
+       .gallery img {
+           margin: 5px;
+           border: 2px solid #ddd;
+       }
+       .gallery img.p1 {
+           width: 40%; /* Larger size for p1 */
+       }
+       .gallery img:not(.p1) {
+           width: 25%; /* Adjusted size for other photos */
+       }
+       .photo-caption {
+           margin-top: 5px;
+           font-size: 1em;
+           color: #555; /* Grey color for captions */
+       }
+       .quiz-question {
+           text-align: left;
+           margin-bottom: 20px;
+       }
+       .quiz-question p {
+           margin: 0;
+           font-weight: bold;
+       }
+       .quiz-question input {
+           margin-right: 10px;
+       }
+       .quiz-question div {
+           margin: 5px 0;
+       }
+       .cozy-message {
+           font-size: 1.2em;
+           color: #ffffff; /* White */
+           margin-top: 20px;
+       }
+       #countdown {
+           font-size: 2em;
+           color: #000000; /* Black for visibility */
+           margin: 20px 0;
+       }
+       .quiz-result {
+           margin-top: 20px;
+           font-size: 1.5em;
+           color: #ff5722; /* Bright color for emphasis */
+           padding: 20px;
+           background-color: #ffffff; /* White background for the result */
+           border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           display: inline-block;
+           text-align: center;
+       }
+       footer p {
+           margin: 0;
+           font-size: 0.9em;
+       }
+       .submit-button {
+           padding: 10px 20px;
+           font-size: 1em;
+           color: #ffffff;
+           background-color: #2196f3; /* Button color */
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           display: inline-block; /* Ensure it shows up correctly */
+       }
+       .submit-button:hover {
+           background-color: #e64a19; /* Darker shade on hover */
+       }
+</style>
+<script>
+       function showSection(id) {
+           document.querySelectorAll('section').forEach(section => {
+               section.style.display = 'none';
+           });
+           document.getElementById(id).style.display = 'block';
+       }
+       window.onload = function() {
+           showSection('home'); // Show the home section by default
+           startCountdown();
+       };
+       function checkQuiz() {
+           let correctAnswers = 0;
+           if (document.querySelector('input[name="q1"]:checked')?.value === "correct") correctAnswers++;
+           if (document.querySelector('input[name="q2"]:checked')?.value === "correct") correctAnswers++;
+           if (document.querySelector('input[name="q3"]:checked')?.value === "correct") correctAnswers++;
+           const q4Answer = document.querySelector('input[name="q4"]:checked')?.value;
+           if (q4Answer === "correct") correctAnswers++;
+           let resultText = `🎉 You got ${correctAnswers} out of 4 correct! 🎉`;
+           if (correctAnswers < 4) {
+               resultText += '<br>Try again, babe 😝';
+           }
+           document.getElementById("quiz-result").innerHTML = resultText;
+       }
+       function startCountdown() {
+           const birthdayDate = new Date('August 26, 2024 00:00:00').getTime();
+           const countdownElement = document.getElementById('countdown');
+           const interval = setInterval(() => {
+               const now = new Date().getTime();
+               const distance = birthdayDate - now;
+               if (distance < 0) {
+                   clearInterval(interval);
+                   countdownElement.innerHTML = 'Happy Birthday Gökçe! 🎉';
+                   return;
+               }
+               const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+               const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+               const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+               const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+               countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+           }, 1000);
+       }
+</script>
+</head>
+<body>
+<header>
+<h1>🎉 Happy Birthday, Gökçe! 🎂</h1>
+<p>İyi ki doğdun 🎂</p>
+<p class="cozy-message">To my beautiful blue sky 🌌</p>
+</header>
+<div id="countdown"></div>
+<nav>
+<a href="#" onclick="showSection('home')">Home</a>
+<a href="#" onclick="showSection('gallery')">Gallery</a>
+<a href="#" onclick="showSection('videos')">Video</a>
+<a href="#" onclick="showSection('quiz')">Quiz</a>
+</nav>
+<section id="home">
+<h2>Welcome to Your Special Birthday Page! 🥳</h2>
+<p>Dear Gökçe,</p>
+<p>🎁 I hope this day brings you as much happiness and joy as you have brought into my life. Here’s to many more years , and a future filled with love , success and laughter! 💕</p>
+</section>
+<section id="gallery" style="display: none;">
+<h2>Photo Gallery 📸</h2>
+<div class="gallery">
+  <img class="p1" src="file:///C:/Users/rghanem/Downloads/p1.jpg" alt="Memory 1">
+  <div class="photo-caption">Cuttie little you ❤️</div>
+  <div class="gallery-row">
+    <img src="file:///C:/Users/rghanem/Downloads/p2.jpg" alt="Memory 2">
+    <div class="photo-caption">Don't kill me</div>
+    <img src="file:///C:/Users/rghanem/Downloads/p3.jpg" alt="Memory 3">
+    <div class="photo-caption">Don't kill me again</div>
+    <img src="file:///C:/Users/rghanem/Downloads/p4.jpg" alt="Memory 4">
+    <div class="photo-caption">The cute us</div>
+    <img src="file:///C:/Users/rghanem/Downloads/p5.jpg" alt="Memory 5">
+    <div class="photo-caption">Till we have real photos together</div>
+  </div>
+</div>
+</section>
+<section id="videos" style="display: none;">
+<h2>Video Messages 🎥</h2>
+<p><a href="https://www.youtube.com/embed/oAQmRO42UHc" target="_blank">Watch your birthday video!</a></p>
+</section>
+<section id="quiz" style="display: none;">
+<h2>Quiz About Us 📝</h2>
+<div class="quiz">
+<div class="quiz-question">
+<p>1. When did we first meet?</p>
+<div>
+<input type="radio" name="q1" value="wrong"> September 10, 2023<br>
+<input type="radio" name="q1" value="wrong"> September 12, 2023<br>
+<input type="radio" name="q1" value="correct"> September 11, 2023<br>
+</div>
+</div>
+<div class="quiz-question">
+<p>2. What is our favorite activity together?</p>
+<div>
+<input type="radio" name="q2" value="wrong"> Watching movies<br>
+<input type="radio" name="q2" value="correct"> Talking for hours<br>
+<input type="radio" name="q2" value="wrong"> Cooking<br>
+</div>
+</div>
+<div class="quiz-question">
+<p>3. What did we talk about during our first meeting?</p>
+<div>
+<input type="radio" name="q3" value="wrong"> Weekend plans<br>
+<input type="radio" name="q3" value="wrong"> Our favorite books<br>
+<input type="radio" name="q3" value="correct">  English exam<br>
+</div>
+</div>
+<div class="quiz-question">
+<p>4. Who's my favorite person?</p>
+<div>
+<input type="radio" name="q4" value="correct"> You ❤️<br>
+<input type="radio" name="q4" value="correct"> Also You 😘<br>
+<input type="radio" name="q4" value="correct"> Oh , again it's You 🌟<br>
+</div>
+</div>
+<button class="submit-button" onclick="checkQuiz()">Submit</button>
+<div id="quiz-result"></div>
+</div>
+</section>
+<footer>
+<p>&copy; 2024 Rawan. All rights reserved.Created with ❤️ for Gökçe</p>
+</footer>
+</body>
+</html>
